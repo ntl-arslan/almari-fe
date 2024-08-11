@@ -66,9 +66,11 @@ a:hover {
   transition: all 0.4s;
 }
 
+
 .navbar__link:hover::after {
   transform: scale(1);
 }
+
 .header_top__icon_wrapper {
   background-color: #f8f9fa; /* Equivalent to bg-light */
   border-radius: 0.25rem; /* Equivalent to rounded */
@@ -89,5 +91,9 @@ a:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
   transition: all 0.3s ease;
+}
+.nav-link:hover {
+  color: #e65c50;
+  transition: color 0.3s ease;
 }
 

@@ -13,21 +13,26 @@ import "../styles/toast.css";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const { pathname } = router;
-  const loginPage = pathname == '/Login';
-  const signUpPage = pathname !== '/Signup';
+  
+  // Check if the current page is the login, signup, or home page
+  const loginPage = pathname === '/Login';
+  const signUpPage = pathname === '/Signup';
+  const homePage = pathname === '/Home';
+  const lawnPage = pathname === '/Lawns';
+
   return (
     <>
-    {loginPage &&<HeaderTop/> }
-    
-    <HeaderMain/>
-    {!loginPage || !signUpPage && <Navbar />}
-   
-      <MobNavbar/>
-      <ToastContainer
-        
-      />
+      {/* Show HeaderTop and Navbar only on the home page */}
+      {homePage || lawnPage && <HeaderTop />}
+      {homePage || lawnPage && <Navbar />}
+
+      {/* Show HeaderMain on all pages except login and signup */}
+      {!loginPage && !signUpPage && <HeaderMain />}
+
+      <MobNavbar />
+      <ToastContainer />
       <Component {...pageProps} />
-      <Footer/>
+      <Footer />
     </>
   );
 }
