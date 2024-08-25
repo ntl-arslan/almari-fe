@@ -14,26 +14,36 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const { pathname } = router;
   
-  // Check if the current page is the login, signup, or home page
   const loginPage = pathname === '/Login';
   const signUpPage = pathname === '/Signup';
   const homePage = pathname === '/Home';
   const lawnPage = pathname === '/Lawns';
+  const suitsPage = pathname === '/Suits';
+  const cartItemsPage = pathname === '/CartItems';
+  const shoesPage = pathname === '/Shoes';
+  const trousersPage = pathname === '/Trousers';
+  
 
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100">
       {/* Show HeaderTop and Navbar only on the home page */}
-      {homePage || lawnPage && <HeaderTop />}
-      {homePage || lawnPage && <Navbar />}
+      {(homePage || lawnPage || trousersPage || suitsPage  || cartItemsPage || shoesPage) && <HeaderTop />}
+      {(homePage || lawnPage || trousersPage || suitsPage || shoesPage ) && <Navbar />}
 
       {/* Show HeaderMain on all pages except login and signup */}
       {!loginPage && !signUpPage && <HeaderMain />}
 
       <MobNavbar />
       <ToastContainer />
-      <Component {...pageProps} />
+
+      {/* The main content should take up available space */}
+      <div className="flex-grow-1">
+        <Component {...pageProps} />
+      </div>
+
+      {/* Footer always at the bottom */}
       <Footer />
-    </>
+    </div>
   );
 }
 
